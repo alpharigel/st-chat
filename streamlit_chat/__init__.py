@@ -60,7 +60,10 @@ def message(message: str,
             avatar_style: Optional[AvatarStyle] = None,
             logo: Optional[str]=None,
             seed: Optional[Union[int, str]] = 88,
-            key: Optional[str] = None):
+            key: Optional[str] = None,
+            allow_html: Optional[bool] = False,
+            is_table: Optional[bool] = False,
+            no_icon: Optional[bool] = False):
     """
     Creates a new instance of streamlit-chat component
 
@@ -84,15 +87,17 @@ def message(message: str,
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
         be re-mounted in the Streamlit frontend and lose its current state.
+    no_icon: bool, default False
+        Don't use any logo or avatar.
 
     Returns: None
     """
     if logo:
-        _streamlit_chat(message=message, seed=seed, isUser=is_user, logo=logo, key=key)
+        _streamlit_chat(message=message, seed=seed, isUser=is_user, logo=logo, key=key, allow_html=allow_html, is_table=is_table, noIcon=no_icon)
     else:
         if not avatar_style:
             avatar_style = "fun-emoji" if is_user else "bottts"
-        _streamlit_chat(message=message, seed=seed, isUser=is_user, avatarStyle=avatar_style, key=key)
+        _streamlit_chat(message=message, seed=seed, isUser=is_user, avatarStyle=avatar_style, key=key, allow_html=allow_html, is_table=is_table, noIcon=no_icon)
 
 
 if not _RELEASE:
